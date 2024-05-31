@@ -32,7 +32,7 @@ public class User {
 
     @NotBlank
     @Email
-    @Size(max = 255)
+    @Size(max = 50)
     private String email;
 
     @NotBlank
@@ -40,7 +40,7 @@ public class User {
     private String username;
 
     @NotBlank
-    @Size(min=8, max = 255)
+    @Size(min=8)
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-+=]).{8,}$",
             message = "Le mot de passe doit contenir au moins 8 caractères, avec au moins un chiffre, une lettre minuscule, une lettre majuscule et un caractère spécial.")
     private String password;
@@ -67,4 +67,12 @@ public class User {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public User(String email, String username, String password, boolean admin) {
+        this.email=email;
+        this.username=username;
+        this.admin=admin;
+        this.password=password;
+
+    }
 }

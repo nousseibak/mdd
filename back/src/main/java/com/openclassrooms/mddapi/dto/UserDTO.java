@@ -31,7 +31,7 @@ public class UserDTO {
     private String username;
 
     @NotBlank
-    @Size(min = 8, max = 255)
+    @Size(min = 8, max = 40)
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-+=]).{8,}$",
             message = "Le mot de passe doit contenir au moins 8 caractères, avec au moins un chiffre, une lettre minuscule, une lettre majuscule et un caractère spécial.")
     private String password;
