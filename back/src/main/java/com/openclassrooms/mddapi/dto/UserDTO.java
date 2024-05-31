@@ -41,7 +41,7 @@ public class UserDTO {
     private List<Post> posts;
 
     private List<Comment> comments;
-    private List<Topic> subscriptions = new ArrayList<>();
+    private List<Topic> subscriptions;
 
     private LocalDateTime createdAt;
 

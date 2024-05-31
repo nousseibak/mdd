@@ -48,10 +48,10 @@ public class User {
     private boolean admin = false;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Post> posts;
+    private List<Post> posts= new ArrayList<>();
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Comment> comments;
+    private List<Comment> comments= new ArrayList<>();
 
     @ManyToMany
     @JoinTable(

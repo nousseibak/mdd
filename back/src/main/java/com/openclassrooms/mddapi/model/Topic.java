@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +32,7 @@ public class Topic {
     private List<Post> posts;
 
     @ManyToMany(mappedBy = "subscriptions")
-    private Set<User> subscribers = new HashSet<>();
+    private List<User> subscribers = new ArrayList<>();
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)
