@@ -1,10 +1,10 @@
-<nav class="navbar md:flex items-center justify-between border-b border-black">
+<nav  *ngIf="showNavbar" class="navbar md:flex items-center justify-between border-b border-black">
     <div class="navbar-logo">
-      <!-- Mettez ici votre logo -->
+      <a routerLink="/">
       <img src="/assets/logo_p6.png" alt="Logo" class="h-24">
+      </a>
     </div>
     <div class="navbar-items">
-      <!-- Ajoutez ici les autres éléments de la navbar -->
       <ul class="flex justify-end items-center">
         <li class="mr-4"><a routerLink="/feedPost">Articles</a></li>
         <li class="mr-4"><a routerLink="/allTopics">Thèmes</a></li>
@@ -19,5 +19,5 @@
         </li>
       </ul>
     </div>
+    <div class="mb-12"></div>
   </nav>
-  <div class="mb-12"></div>

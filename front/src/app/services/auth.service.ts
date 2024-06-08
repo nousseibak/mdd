@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginRequest } from '../interfaces/auth/loginRequest.interface';
@@ -11,7 +11,9 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  private pathService = `${environment.baseUrl}auth`;
+  private pathService = "http://localhost:8080/api/auth";
+
+
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,6 +22,17 @@ export class AuthService {
   }
 
   public login(loginRequest: LoginRequest): Observable<SessionInformation> {
-    return this.httpClient.post<SessionInformation>(`${this.pathService}/login`, loginRequest);
+    let headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': 'http://localhost:4200/',
+      'Access-Control-Allow-Credentials': 'true',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+      'Access-Control-Allow-Headers': 'X-Requested-With,content-type'
+    });
+
+
+    let options = { headers: headers };
+
+
+    return this.httpClient.post<SessionInformation>(`http://localhost:8080/api/auth/login`, loginRequest, options);
   }
 }
