@@ -18,6 +18,9 @@ public class TopicDTO {
     @Size(max = 255)
     private String name;
 
+    @Size(max = 255)
+    private String description;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;

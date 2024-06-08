@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/comments")
 public class CommentController {
@@ -30,12 +31,6 @@ public class CommentController {
     @Autowired
     private CommentMapper commentMapper;
 
-
-    @GetMapping("/all")
-    public ResponseEntity<List<CommentDTO>> getAllComments() {
-        List<Comment> comments = commentService.getAllComments();
-        return ResponseEntity.ok(commentMapper.toDto(comments));
-    }
 
     @GetMapping("/allByAuthor/{id}")
     public ResponseEntity<?> getAllCommentsByAuthor(@PathVariable Long id) {

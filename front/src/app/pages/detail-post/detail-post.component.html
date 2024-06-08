@@ -1,0 +1,24 @@
+<!-- detail-post.component.html -->
+<div class="post-detail bg-white rounded-lg p-6 shadow-md">
+    <h1 class="text-3xl font-bold mb-4">{{ post.title }}</h1>
+    <div class="flex items-center justify-between text-gray-600 mb-4">
+      <span>{{ post.createdAt | date: 'mediumDate' }}</span>
+      <span>{{ post.author }}</span>
+      <span>{{ post.topic?.name }}</span>
+    </div>
+    <p class="text-black mb-6">{{ post.content }}</p>
+    <hr class="border-t-2 border-black mb-4">
+    <h2 class="text-xl font-semibold mb-4">Commentaires</h2>
+    <div *ngFor="let comment of post.comments" class="mb-2">
+
+    </div>
+    <div class="flex items-center mt-4">
+      <input type="text" placeholder="Ajouter un commentaire" class="border-2 border-black rounded p-2 flex-1">
+      <button class="ml-2 bg-purple-600 text-white p-2 rounded">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  

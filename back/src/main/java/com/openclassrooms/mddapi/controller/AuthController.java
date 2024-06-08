@@ -26,10 +26,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-    private final AuthenticationManager authenticationManager;
-    private final JwtUtils jwtUtils;
-    private final PasswordEncoder passwordEncoder;
-    private final UserRepository userRepository;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private JwtUtils jwtUtils;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRepository userRepository;
 
     AuthController(AuthenticationManager authenticationManager,
                    PasswordEncoder passwordEncoder,

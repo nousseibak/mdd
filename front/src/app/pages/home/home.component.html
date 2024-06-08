@@ -1,5 +1,7 @@
-<div class="center">
+<div class="flex justify-center items-center flex-col">
   <img src="/assets/logo_p6.png" alt="logo" />
-  <h1>Welcome to MDD</h1>
-  <button mat-raised-button color="primary" (click)="start()">Commencer</button>
+  <div class="mt-4 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-32 lg:space-x-32">
+    <a routerLink="/login" class="bg-white border border-black rounded px-4 py-2">Se connecter</a>
+    <a routerLink="/register" class="bg-white border border-black rounded px-4 py-2">S'inscrire</a>
+  </div>
 </div>

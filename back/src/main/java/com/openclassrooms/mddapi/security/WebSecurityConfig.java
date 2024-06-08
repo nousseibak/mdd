@@ -17,6 +17,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.openclassrooms.mddapi.security.jwt.AuthEntryPointJwt;
 import com.openclassrooms.mddapi.security.jwt.AuthTokenFilter;
 import com.openclassrooms.mddapi.security.services.UserDetailsServiceImpl;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+
 
 @Configuration
 @EnableWebSecurity
@@ -32,10 +34,9 @@ public class WebSecurityConfig {
   private AuthEntryPointJwt unauthorizedHandler;
 
 
-  public AuthTokenFilter authenticationJwtTokenFilter;
-
-  public WebSecurityConfig(AuthTokenFilter authenticationJwtTokenFilter) throws Exception {
-    this.authenticationJwtTokenFilter=authenticationJwtTokenFilter;
+  @Bean
+  public AuthTokenFilter authenticationJwtTokenFilter() {
+    return new AuthTokenFilter();
   }
 
   @Bean
@@ -51,14 +52,17 @@ public class WebSecurityConfig {
     return new BCryptPasswordEncoder();
   }
 
+
+
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.csrf().disable()
+    http.cors(AbstractHttpConfigurer::disable)
+            .csrf(AbstractHttpConfigurer::disable)
             .authorizeRequests()
       .requestMatchers("/api/auth/**").permitAll()
       .anyRequest().authenticated()
             .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and().addFilterBefore(authenticationJwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+            .and().addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     return http.build();
   }
 }

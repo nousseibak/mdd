@@ -28,6 +28,9 @@ public class Topic {
     @Size(max = 255)
     private String name;
 
+    @Size(max = 255)
+    private String description;
+
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Post> posts;
 

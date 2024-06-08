@@ -26,6 +26,7 @@ CREATE TABLE users (
 CREATE TABLE topics (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL UNIQUE,
+	description VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -75,10 +76,10 @@ INSERT INTO users (email, username, password, admin) VALUES
 ('admin@example.com', 'admin', '$2a$10$adminhash', true);
 
 -- Insert test data into topics table
-INSERT INTO topics (name) VALUES 
-('JavaScript'),
-('Java'),
-('Python');
+INSERT INTO topics (name, description) VALUES 
+('JavaScript', 'langage javascript'),
+('Java','langage java'),
+('Python','lanagage python');
 
 -- Insert test data into posts table
 INSERT INTO posts (title, content, user_id, topic_id, date_created) VALUES 

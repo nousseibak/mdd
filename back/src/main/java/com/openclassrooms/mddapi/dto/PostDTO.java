@@ -23,7 +23,7 @@ public class PostDTO {
     private String content;
 
     @NotNull
-    private Long userId;
+    private Long author;
 
     @NotNull
     private Long topicId;

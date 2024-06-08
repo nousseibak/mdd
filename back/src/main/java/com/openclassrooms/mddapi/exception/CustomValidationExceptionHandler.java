@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * permet de renvoyer une erreur si les contarintes ne sont pas respectees (exemple: mot de passe trop court)
+ * permet de renvoyer une erreur si les contraintes ne sont pas respectees (exemple: mot de passe trop court)
  */
 @RestControllerAdvice
 public class CustomValidationExceptionHandler {
