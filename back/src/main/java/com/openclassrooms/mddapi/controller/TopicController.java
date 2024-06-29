@@ -11,11 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/topics")
 public class TopicController {
+
+    private static final Logger logger = Logger.getLogger(TopicController.class.getName());
 
     @Autowired
     private TopicService topicService;
@@ -26,7 +29,11 @@ public class TopicController {
     @GetMapping("/all")
     public ResponseEntity<List<TopicDTO>> getAllTopics() {
         List<Topic> topics = topicService.getAllTopics();
-        return ResponseEntity.ok(topicMapper.toDto(topics));
+        logger.info("Topics from service: " + topics);
+        List<TopicDTO> topicDTOS = topicMapper.toDto(topics);
+        logger.info("Topics DTO: " + topicDTOS);
+
+        return ResponseEntity.ok(topicDTOS);
     }
 
     @PostMapping("/create")

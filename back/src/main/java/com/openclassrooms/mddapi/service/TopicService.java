@@ -43,7 +43,9 @@ public class TopicService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
 
         topic.getSubscribers().add(user);
+        user.getSubscriptions().add(topic);
         topicRepository.save(topic);
+        userRepository.save(user);
     }
 
     public void unsubscribeUserFromTopic(Long topicId, Long userId) {
@@ -54,7 +56,10 @@ public class TopicService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
 
         topic.getSubscribers().remove(user);
+        user.getSubscriptions().remove(topic);
         topicRepository.save(topic);
+        userRepository.save(user);
+
     }
 
     public List<Topic> getUserSubscriptions(Long userId) {

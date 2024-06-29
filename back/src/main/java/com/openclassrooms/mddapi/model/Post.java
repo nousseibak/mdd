@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = {"topic", "comments"}) // Exclude relationships to avoid recursion
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"posts", "comments", "subscriptions"}) // Exclude relationships to avoid recursion
 public class UserDTO {
     private Long id;
 
@@ -38,10 +40,10 @@ public class UserDTO {
 
     private boolean admin;
 
-    private List<Post> posts;
+    //private List<Post> posts;
 
-    private List<Comment> comments;
-    private List<Topic> subscriptions;
+    //private List<CommentDTO> comments;
+    //private List<TopicDTO> subscriptions;
 
     private LocalDateTime createdAt;
 

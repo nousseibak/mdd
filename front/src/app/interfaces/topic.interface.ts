@@ -5,7 +5,7 @@ export interface Topic {
   id?: number;  
   name: string;
   posts?: Post[];  
-  subscribers?: User[];  
+  subscribers: User[];  
   createdAt?: Date;  
   updatedAt?: Date;  
   isSubscribed?: boolean; 

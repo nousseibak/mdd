@@ -61,35 +61,12 @@ public class WebSecurityConfig {
   }
 
 
-
-  @Bean
-  CorsConfigurationSource corsConfigurationSource() {
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    CorsConfiguration config = new CorsConfiguration();
-    config.setAllowCredentials(true);
-    config.setAllowedOrigins(Arrays.asList("*"));
-    config.setAllowedHeaders(Arrays.asList("*"));
-    config.setAllowedMethods(Arrays.asList("*"));
-    source.registerCorsConfiguration("/**", config);
-    return source;
-  }
-
-  private Customizer<CorsConfigurer<HttpSecurity>> corsCustomiser() {
-    return new Customizer<CorsConfigurer<HttpSecurity>>() {
-      @Override
-      public void customize(CorsConfigurer<HttpSecurity> t) {
-        t.configurationSource(corsConfigurationSource());
-      }
-    };
-  }
-
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                http.cors(cors -> cors.disable()).csrf().disable()
-
+            http.cors(cors -> cors.disable()).csrf(csrf-> csrf.disable())
             .authorizeRequests()
       .requestMatchers("/api/auth/**").permitAll()
-      .anyRequest().authenticated()
+      .anyRequest().permitAll()
             .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and().addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     return http.build();

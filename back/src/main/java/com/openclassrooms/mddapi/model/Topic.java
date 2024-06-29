@@ -18,7 +18,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = {"posts", "subscribers"})
 public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

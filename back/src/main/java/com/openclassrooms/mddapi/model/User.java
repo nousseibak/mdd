@@ -24,7 +24,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = {"posts", "comments"}) // Exclude relationships to avoid recursion
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

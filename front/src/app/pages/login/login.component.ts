@@ -47,6 +47,8 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(loginRequest).subscribe({
       next: (response: SessionInformation) => {
+        console.log("response "+response.id);
+        console.log("sessionInformation : "+response.username);
         this.sessionService.logIn(response);
         this.router.navigate(['/feedPost']);
       },

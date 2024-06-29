@@ -1,7 +1,12 @@
 <div class="flex flex-wrap justify-center">
-    <ng-container *ngFor="let topic of topics">
-      <div class="w-full md:w-1/2 lg:w-1/2 p-2">
-        <app-card-topic [title]="topic.name" [content]="topic.description" [isSubscribed]="topic.isSubscribed||false"></app-card-topic>
-      </div>
-    </ng-container>
-  </div>
+  <ng-container *ngFor="let topic of topics">
+    <div class="w-full md:w-1/2 lg:w-1/2 p-2">
+      <app-card-topic
+        [title]="topic.name"
+        [content]="topic.description"
+        [isSubscribed]="isUserSubscribed(topic)"
+        (subscriptionToggle)="toggleSubscription(topic)">
+      </app-card-topic>
+    </div>
+  </ng-container>
+</div>

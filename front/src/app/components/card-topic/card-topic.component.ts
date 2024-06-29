@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-card-topic',
@@ -9,11 +9,14 @@ export class CardTopicComponent {
 
   @Input() title!: string;
   @Input() content!: string;
-  @Input() isSubscribed!: boolean;
+  @Output() subscriptionToggle = new EventEmitter<void>();
+  @Input() isSubscribed: boolean | undefined;
+
+
 
   toggleSubscription(): void {
-    // Mettez ici la logique pour basculer l'abonnement
-    // Par exemple, vous pouvez appeler un service pour ajouter ou supprimer le thème des abonnements de l'utilisateur
+    console.log('Button clicked'); 
+    this.subscriptionToggle.emit();
   }
 
 }
