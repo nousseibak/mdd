@@ -33,10 +33,6 @@ public class Comment {
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 
-    @CreatedDate
-    @Column(name = "date_created", updatable = false)
-    private LocalDateTime dateCreated;
-
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

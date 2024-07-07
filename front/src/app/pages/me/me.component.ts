@@ -7,6 +7,8 @@ import { PostService } from 'src/app/services/post.service';
 import { SessionService } from 'src/app/services/session.service';
 import { TopicService } from 'src/app/services/topic.service';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-me',
@@ -19,134 +21,16 @@ export class MeComponent implements OnInit {
   public user: User | undefined;
   userId: number | undefined;
   posts: Post[]=[];
-/** 
-  topics: Topic[] = [
-    {
-      id: 1,
-      name: 'Science',
-      description: 'Discussion about scientific discoveries and research.',
-      createdAt: new Date('2024-06-10'),
-      updatedAt: new Date('2024-06-12'),
-      isSubscribed: true,
-      posts: [
-        {
-          id: 1,
-          title: 'New Discoveries in Quantum Mechanics',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-          createdAt: new Date('2024-06-10'),
-          updatedAt: new Date('2024-06-11'),
-          author: 1
-  
-        },
-        // Other posts related to science topic
-      ],
-      subscribers: [
-        {
-          id: 1,
-          username: 'user1',
-          email: 'user1@example.com',
-          createdAt: new Date('2024-06-10'),
-          updatedAt: new Date('2024-06-10'),
-        },
-        // Other subscribers of the science topic
-      ]
-    },
-    {
-      id: 3,
-      name: 'Technology',
-      description: 'Discussion about the latest technologies and innovations.',
-      createdAt: new Date('2024-06-11'),
-      updatedAt: new Date('2024-06-12'),
-      isSubscribed: false,
-      posts: [
-        {
-          id: 2,
-          title: 'Artificial Intelligence and Machine Learning',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-          createdAt: new Date('2024-06-11'),
-          updatedAt: new Date('2024-06-12'),
-          author: 2
-        },
-        // Other posts related to technology topic
-      ],
-      subscribers: [
-        {
-          id: 2,
-          username: 'user2',
-          email: 'user2@example.com',
-          createdAt: new Date('2024-06-11'),
-          updatedAt: new Date('2024-06-11'),
-        },
-        // Other subscribers of the technology topic
-      ]
-    },
-    {
-      id: 4,
-      name: 'Technology',
-      description: 'Discussion about the latest technologies and innovations.',
-      createdAt: new Date('2024-06-11'),
-      updatedAt: new Date('2024-06-12'),
-      isSubscribed: false,
-      posts: [
-        {
-          id: 2,
-          title: 'Artificial Intelligence and Machine Learning',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-          createdAt: new Date('2024-06-11'),
-          updatedAt: new Date('2024-06-12'),
-          author: 2
-        },
-        // Other posts related to technology topic
-      ],
-      subscribers: [
-        {
-          id: 2,
-          username: 'user2',
-          email: 'user2@example.com',
-          createdAt: new Date('2024-06-11'),
-          updatedAt: new Date('2024-06-11'),
-        },
-        // Other subscribers of the technology topic
-      ]
-    },
-    {
-      id: 2,
-      name: 'Technology',
-      description: 'Discussion about the latest technologies and innovations.',
-      createdAt: new Date('2024-06-11'),
-      updatedAt: new Date('2024-06-12'),
-      isSubscribed: false,
-      posts: [
-        {
-          id: 2,
-          title: 'Artificial Intelligence and Machine Learning',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-          createdAt: new Date('2024-06-11'),
-          updatedAt: new Date('2024-06-12'),
-          author: 2
-        },
-        // Other posts related to technology topic
-      ],
-      subscribers: [
-        {
-          id: 2,
-          username: 'user2',
-          email: 'user2@example.com',
-          createdAt: new Date('2024-06-11'),
-          updatedAt: new Date('2024-06-11'),
-        },
-        // Other subscribers of the technology topic
-      ]
-    },
-  ];*/
+  errorMessage: string | undefined;
+
 
   constructor(private fb: FormBuilder,
               private sessionService: SessionService,
               private userService: UserService,
-            private topicService:TopicService) {
+              private topicService:TopicService,   
+              private router: Router,
+          ) {
   }
-
-
 
   ngOnInit(): void {
     this.userId = this.sessionService.sessionInformation?.id;
@@ -159,14 +43,14 @@ export class MeComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]]
     });
 
-    /** 
+
     if(this.userId){
       this.loadTopics();
       this.completeForm();
       }
-*/
+
     }
-/** 
+
     loadTopics(): void {
       this.topicService.getUserSubscriptions(this.userId!).subscribe((topics: Topic[]) => {
         this.topics = topics;
@@ -187,11 +71,64 @@ export class MeComponent implements OnInit {
             });
           });
         }
-*/
+
     
 
-  save(): void {
-    // Vous pouvez implémenter ici la logique pour sauvegarder les données de l'utilisateur
-    //console.log('Données sauvegardées :', this.form.value);
+        save(): void {
+          if (this.form.valid) {
+            const updatedUserData = {
+              username: this.form.value.username,
+              email: this.form.value.email
+            };
+        
+            this.userService.updateUser(this.userId!, updatedUserData).subscribe(
+              (updatedUser: User) => {
+                console.log('Données utilisateur mises à jour :', updatedUser);
+                this.user = updatedUser;
+                this.logout();
+              },
+              (error) => {
+                console.error('Erreur lors de la mise à jour des données utilisateur :', error);
+                this.errorMessage = 'Une erreur s\'est produite lors de la mise à jour des informations utilisateur.';
+              }
+            );
+          } else {
+            this.errorMessage = 'Veuillez remplir correctement tous les champs du formulaire.';
+          }
+        }
+        
+
+
+
+
+  toggleSubscription(topic: Topic): void {
+    console.log('id:', this.userId);
+    console.log('topic.subscribers:', topic.subscribers);
+
+    if (this.userId) {
+      if (topic.subscribers && !topic.subscribers.some(subscriber => subscriber.id === this.userId)) {
+        this.topicService.subscribeToTopic(topic.id!, this.userId).subscribe(() => {
+          console.log('Subscribed to topic:', topic);
+          this.loadTopics(); // Rafraîchir la liste après la souscription
+        });
+      } else if (topic.subscribers && topic.subscribers.some(subscriber => subscriber.id === this.userId)) {
+        this.topicService.unsubscribeFromTopic(topic.id!, this.userId).subscribe(() => {
+          console.log('Unsubscribed from topic:', topic);
+          this.loadTopics(); // Rafraîchir la liste après le désabonnement
+        });
+      }
+    }
+  }
+
+  isUserSubscribed(topic: Topic): boolean {
+    if (topic.subscribers && this.userId) {
+      return topic.subscribers.some(subscriber => subscriber.id === this.userId);
+    }
+    return false;
+  }
+
+  public logout(): void {
+    this.sessionService.logOut();
+    this.router.navigate([''])
   }
 }

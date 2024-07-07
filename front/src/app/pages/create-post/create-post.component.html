@@ -1,5 +1,10 @@
 <div class="max-w-lg mx-auto mt-8 p-4 bg-white rounded-lg shadow-md">
+  <div class="flex items-center mb-4">
+    <app-back-button></app-back-button>
+    <div class="w-6"></div> <!-- Boîte invisible pour créer un espace -->
     <h1 class="text-2xl font-bold mb-4">Créer un nouvel article</h1>
+  </div>
+  
     <form (ngSubmit)="onSubmit()" #articleForm="ngForm">
       <div class="mb-4">
         <label for="topic" class="block text-gray-700">Sélectionner un thème</label>

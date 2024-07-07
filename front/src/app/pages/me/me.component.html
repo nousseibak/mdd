@@ -9,15 +9,27 @@
         <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
         <input class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" formControlName="email">
       </div>
-      <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" type="button" (click)="save()">Sauvegarder</button>
-    </form>
+      <div class="mb-4 text-center">
+        <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" type="button" (click)="save()">Sauvegarder</button>
+      </div>
+     </form>
+     
+     <div *ngIf="errorMessage" class="text-red-500 mb-4">
+      {{ errorMessage }}
+    </div>
+
+  <div class="mt-4 text-center">
+    <a (click)="logout()" class="text-red-500">Se déconnecter</a>
+  </div>
+
     <hr class="border-black my-6 w-full max-w-sm">
     <h2 class="text-lg font-bold mb-4">Abonnements</h2>
   
     <div class="flex flex-wrap justify-center">
         <ng-container *ngFor="let topic of topics">
           <div class="w-full md:w-1/2 lg:w-1/2 p-2">
-            <app-card-topic [title]="topic.name" [content]="topic.description" [isSubscribed]="topic.isSubscribed||false"></app-card-topic>
+            <app-card-topic [title]="topic.name" [content]="topic.description" [isSubscribed]=isUserSubscribed(topic) (subscriptionToggle)="toggleSubscription(topic)">
+              ></app-card-topic>
           </div>
         </ng-container>
       </div>

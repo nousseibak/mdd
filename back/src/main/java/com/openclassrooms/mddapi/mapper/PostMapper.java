@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.mapper;
 
 import com.openclassrooms.mddapi.dto.PostDTO;
+import com.openclassrooms.mddapi.model.Comment;
 import com.openclassrooms.mddapi.model.Post;
 import com.openclassrooms.mddapi.model.Topic;
 import com.openclassrooms.mddapi.model.User;
@@ -13,34 +14,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @Component
-@Mapper(componentModel = "spring", uses = {UserService.class, TopicService.class}, imports = {Optional.class, Collectors.class, Collections.class, Post.class, User.class, Topic.class})
-public abstract class PostMapper implements EntityMapper<PostDTO, Post> {
-/**
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    TopicService topicService;
+@Mapper(componentModel = "spring", uses = {UserMapper.class, TopicMapper.class, CommentMapper.class})
+public interface PostMapper {
 
     @Mappings({
-            @Mapping(source = "title", target = "title"),
-            @Mapping(source = "content", target = "content"),
-            @Mapping(target = "author", expression = "java(postDTO.getAuthor() != null ? this.userService.getUserById(postDTO.getAuthor()) : null)"),
-            @Mapping(target = "topic", expression = "java(postDTO.getTopicId() != null ? this.topicService.getTopicById(postDTO.getTopicId()) : null)")
+            @Mapping(source = "author", target = "author"),
+            @Mapping(source = "topic", target = "topic"),
+            @Mapping(source = "comments", target = "comments")
     })
-    public abstract Post toEntity(PostDTO postDTO);
+    PostDTO toDto(Post post);
+
+    List<PostDTO> toDto(List<Post> posts);
 
     @Mappings({
-            @Mapping(source = "title", target = "title"),
-            @Mapping(source = "content", target = "content"),
-            @Mapping(source = "post.author.id", target = "author"),
-            @Mapping(source = "post.topic.id", target = "topicId")
+            @Mapping(source = "author", target = "author"),
+            @Mapping(source = "topic", target = "topic"),
+            @Mapping(source = "comments", target = "comments")
     })
-    public abstract PostDTO toDto(Post post);
+    Post toEntity(PostDTO postDTO);
 
-            */
+    List<Post> toEntity(List<PostDTO> postDTOs);
 }

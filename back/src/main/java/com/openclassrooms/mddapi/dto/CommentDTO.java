@@ -18,12 +18,10 @@ public class CommentDTO {
     private String content;
 
     @NotNull
-    private Long userId;
+    private UserDTO author;
 
     @NotNull
     private Long postId;
-
-    private LocalDateTime dateCreated;
 
     private LocalDateTime createdAt;
 

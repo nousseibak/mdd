@@ -17,6 +17,9 @@ import { AllTopicsComponent } from './pages/all-topics/all-topics.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardTopicComponent } from './components/card-topic/card-topic.component';
 import { CardPostComponent } from './components/card-post/card-post.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
+import { AuthModule } from './modules/auth.module';
+import { SharedModule } from './modules/shared-module.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NavbarComponent, MeComponent, NotFoundComponent, DetailPostComponent, CreatePostComponent, FeedPostComponent, AllTopicsComponent, CardTopicComponent, CardPostComponent],
@@ -26,9 +29,11 @@ import { CardPostComponent } from './components/card-post/card-post.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [ {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent],
+
 })
 export class AppModule {}

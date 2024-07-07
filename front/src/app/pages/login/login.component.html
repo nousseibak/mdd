@@ -1,5 +1,14 @@
 <div class="flex flex-col items-center h-screen">
-  <h2 class="text-2xl font-bold mb-4">Se connecter</h2>
+  <div class="flex justify-between w-full mb-4">
+    <div class="flex items-center">
+      <div class="w-6"></div> <!-- Espace avant l'icône de retour -->
+      <app-back-button></app-back-button>
+      <div class="w-6"></div> <!-- Boîte invisible pour créer un espace -->
+    </div>
+    <h2 class="text-2xl font-bold mb-4">Se connecter</h2>
+    <div class="w-6"></div> <!-- Autre espace pour équilibrer -->
+  </div>
+
   <form class="w-full max-w-sm mx-auto" [formGroup]="form" (ngSubmit)="submit()">
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Email ou nom d'utilisateur</label>

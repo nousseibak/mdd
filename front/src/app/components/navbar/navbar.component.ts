@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { Observable } from 'rxjs';
+import { SessionService } from 'src/app/services/session.service';
 
 
 @Component({
@@ -10,7 +12,9 @@ import { Router, NavigationEnd } from '@angular/router';
 export class NavbarComponent implements OnInit {
   showNavbar = true;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private sessionService: SessionService
+  ) { }
 
   ngOnInit(): void {
     this.router.events.subscribe(event => {
@@ -20,5 +24,11 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
+
+  public $isLogged(): Observable<boolean> {
+    return this.sessionService.$isLogged();
+  }
+
+  
 
 }

@@ -54,7 +54,7 @@ export class DetailPostComponent implements OnInit {
   // ngOnInit(): void {
   // }
 
-  post!: Post;
+  post: Post| undefined;
   newCommentContent: string = '';
   userId: number | undefined;
 
@@ -76,28 +76,36 @@ export class DetailPostComponent implements OnInit {
       this.post = post;
       console.log("author: "+ this.post.author?.username)
       console.log("theme: "+ this.post.topic?.name)
+      console.log("comments: "+ this.post.comments)
+      console.log("comments: "+ this.post.comments?.at(1)?.author)
+
     });
 
   }
 
 
-/** 
+
   addComment(): void {
     if (this.newCommentContent.trim() === '') {
       return; // Ne rien faire si le contenu du commentaire est vide
     }
 
-    const comment: Comment = {
+    let comment: Comment = {
       content: this.newCommentContent,
-      author: this.post.author
+      author: this.post?.author,
+      postId: this.post!.id
     };
 
-    this.commentService.addCommentToPost(this.userId!, this.post.id!, comment).subscribe((comment: Comment) => {
-
+    this.commentService.addCommentToPost(this.userId!, this.post?.id!, comment).subscribe((comment: Comment) => {
+      // Ajouter le commentaire à la liste des commentaires du post
+      if (!this.post!.comments) {
+        this.post!.comments = [];
+      }
+      this.post!.comments.push(comment);
       // Effacer le champ de saisie du commentaire
       this.newCommentContent = '';
     });
   }
-*/
+
 
 }

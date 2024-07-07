@@ -13,11 +13,11 @@ import { AuthGuard } from './guards/auth.guard';
 // consider a guard combined with canLoad / canActivate route option
 // to manage unauthenticated user to access private routes
 const routes: Routes = [{ path: '', component: HomeComponent},
-{ path: 'me', component: MeComponent},
-{ path: 'allTopics', component: AllTopicsComponent},
+{ path: 'me', component: MeComponent, canActivate: [AuthGuard]},
+{ path: 'allTopics', component: AllTopicsComponent, canActivate: [AuthGuard]},
 { path: 'feedPost', component: FeedPostComponent, canActivate: [AuthGuard]},
-{ path: 'detailPost/:id', component: DetailPostComponent},
-{ path: 'createPost', component: CreatePostComponent},
+{ path: 'detailPost/:id', component: DetailPostComponent, canActivate: [AuthGuard]},
+{ path: 'createPost', component: CreatePostComponent, canActivate: [AuthGuard]},
 {
   path: '',
   canActivate: [UnauthGuard],

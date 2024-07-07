@@ -7,6 +7,7 @@ import { SessionInformation } from '../../interfaces/auth/sessionInformation.int
 import { AuthService } from '../../services/auth.service';
 import { SessionService } from '../../services/session.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

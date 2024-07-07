@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.dto;
 
+import com.openclassrooms.mddapi.model.Comment;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -25,6 +27,8 @@ public class PostDTO {
 
     @NotNull
     private UserDTO author;
+
+    private List<CommentDTO> comments;
 
     @NotNull
     private TopicDTO topic;
