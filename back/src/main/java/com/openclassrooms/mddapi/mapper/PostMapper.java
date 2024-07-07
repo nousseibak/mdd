@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Component
 @Mapper(componentModel = "spring", uses = {UserService.class, TopicService.class}, imports = {Optional.class, Collectors.class, Collections.class, Post.class, User.class, Topic.class})
 public abstract class PostMapper implements EntityMapper<PostDTO, Post> {
-
+/**
     @Autowired
     UserService userService;
 
@@ -41,4 +41,6 @@ public abstract class PostMapper implements EntityMapper<PostDTO, Post> {
             @Mapping(source = "post.topic.id", target = "topicId")
     })
     public abstract PostDTO toDto(Post post);
+
+            */
 }

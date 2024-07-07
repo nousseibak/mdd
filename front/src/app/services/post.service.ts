@@ -9,14 +9,14 @@ import { environment } from 'src/environments/environment';
 })
 export class PostService {
 
- //    headers = new HttpHeaders({
- //     'Access-Control-Allow-Origin': 'http://localhost:4200/',
- //     'Access-Control-Allow-Credentials': 'true',
- //     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-  //    'Access-Control-Allow-Headers': 'X-Requested-With,content-type'
- //   });
+    headers = new HttpHeaders({
+     'Access-Control-Allow-Origin': 'http://localhost:4200/',
+    'Access-Control-Allow-Credentials': 'true',
+     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+    'Access-Control-Allow-Headers': 'X-Requested-With,content-type'
+   });
 
-//    options = { headers: this.headers };
+    options = { headers: this.headers };
     
   constructor(private http: HttpClient) { }
 

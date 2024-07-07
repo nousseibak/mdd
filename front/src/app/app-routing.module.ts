@@ -23,6 +23,7 @@ const routes: Routes = [{ path: '', component: HomeComponent},
   canActivate: [UnauthGuard],
   loadChildren: () => import('./modules/auth.module').then(m => m.AuthModule)
 },
+
 ];
 
 @NgModule({

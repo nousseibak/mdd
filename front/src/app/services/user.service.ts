@@ -8,12 +8,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  private pathService = 'api/user';
 
   constructor(private httpClient: HttpClient) { }
 
-  public getById(id: string): Observable<User> {
-    return this.httpClient.get<User>(`${this.pathService}/${id}`);
+  public getById(id: number): Observable<User> {
+    return this.httpClient.get<User>(`http://localhost:8080/api/users/${id}`);
   }
 
 }

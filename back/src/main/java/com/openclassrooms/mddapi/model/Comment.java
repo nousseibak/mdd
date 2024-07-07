@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -15,7 +16,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@EntityListeners(AuditingEntityListener.class)
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ public class Comment {
     @Column(name = "date_created", updatable = false)
     private LocalDateTime dateCreated;
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 

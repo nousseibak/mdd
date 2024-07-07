@@ -30,17 +30,14 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-    // securedEnabled = true,
-    // jsr250Enabled = true,
-    prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
+
   @Autowired
   UserDetailsServiceImpl userDetailsService;
 
   @Autowired
   private AuthEntryPointJwt unauthorizedHandler;
-
 
   @Bean
   public AuthTokenFilter authenticationJwtTokenFilter() {
@@ -48,10 +45,10 @@ public class WebSecurityConfig {
   }
 
   @Bean
-  public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder PasswordEncoder)
+  public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder)
           throws Exception {
     AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-    authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(PasswordEncoder);
+    authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     return authenticationManagerBuilder.build();
   }
 
@@ -60,15 +57,20 @@ public class WebSecurityConfig {
     return new BCryptPasswordEncoder();
   }
 
-
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-            http.cors(cors -> cors.disable()).csrf(csrf-> csrf.disable())
-            .authorizeRequests()
-      .requestMatchers("/api/auth/**").permitAll()
-      .anyRequest().permitAll()
-            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and().addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+    http.cors(Customizer.withDefaults()) // Enabler CORS configuration
+            .csrf(csrf -> csrf.disable())
+            .authorizeRequests(authz -> authz
+                    .requestMatchers("/api/auth/**").permitAll()
+                    .anyRequest().authenticated()
+            )
+            .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
+            .and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     return http.build();
   }
 }
+

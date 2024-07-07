@@ -24,12 +24,10 @@ public class PostDTO {
     private String content;
 
     @NotNull
-    private Long author;
+    private UserDTO author;
 
     @NotNull
-    private Long topicId;
-
-    private LocalDateTime dateCreated;
+    private TopicDTO topic;
 
     private LocalDateTime createdAt;
 

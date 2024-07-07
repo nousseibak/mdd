@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -60,7 +61,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "topic_id"))
     private List<Topic> subscriptions = new ArrayList<>();
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 

@@ -54,13 +54,15 @@ public class CommentController {
         }
     }
 
-    @PostMapping("/add/{postId}")
-    public ResponseEntity<CommentDTO> addCommentToPost(@PathVariable Long postId, @Valid @RequestBody CommentDTO commentDTO) {
+    @PostMapping("/add/{userId}/{postId}")
+    public ResponseEntity<CommentDTO> addCommentToPost(@PathVariable Long postId, @PathVariable Long userId, @Valid @RequestBody CommentDTO commentDTO) {
         Optional<Post> optionalPost = postService.getPostById(postId);
+        User author=userService.getUserById(userId);
         if (optionalPost.isPresent()) {
             Post post = optionalPost.get();
             Comment comment = commentMapper.toEntity(commentDTO);
             comment.setPost(post);
+            comment.setAuthor(author);
             Comment savedComment = commentService.saveComment(comment);
             return ResponseEntity.status(HttpStatus.CREATED).body(commentMapper.toDto(savedComment));
         } else {

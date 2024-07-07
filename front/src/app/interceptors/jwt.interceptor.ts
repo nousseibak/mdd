@@ -10,8 +10,12 @@ export class JwtInterceptor implements HttpInterceptor {
     if (this.sessionService.isLogged) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.sessionService.sessionInformation!.token}`,
-        },
+          'Authorization': `Bearer ${this.sessionService.sessionInformation!.token}`,
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'http://localhost:4200',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept, Authorization'
+        }
       });
     }
     return next.handle(request);

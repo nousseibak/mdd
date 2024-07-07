@@ -3,7 +3,7 @@
     <h1 class="text-3xl font-bold mb-4">{{ post.title }}</h1>
     <div class="flex items-center justify-between text-gray-600 mb-4">
       <span>{{ post.createdAt | date: 'mediumDate' }}</span>
-      <span>{{ post.author }}</span>
+      <span>{{ post.author?.username }}</span>
       <span>{{ post.topic?.name }}</span>
     </div>
     <p class="text-black mb-6">{{ post.content }}</p>

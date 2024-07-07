@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Post } from 'src/app/interfaces/post.interface';
 import { Topic } from 'src/app/interfaces/topic.interface';
 import { User } from 'src/app/interfaces/user.interface';
+import { PostService } from 'src/app/services/post.service';
 import { SessionService } from 'src/app/services/session.service';
+import { TopicService } from 'src/app/services/topic.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,9 +15,11 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MeComponent implements OnInit {
   form!: FormGroup;
-
+  topics: Topic[] = [];
   public user: User | undefined;
-
+  userId: number | undefined;
+  posts: Post[]=[];
+/** 
   topics: Topic[] = [
     {
       id: 1,
@@ -133,39 +138,60 @@ export class MeComponent implements OnInit {
         // Other subscribers of the technology topic
       ]
     },
-  ];
+  ];*/
 
   constructor(private fb: FormBuilder,
               private sessionService: SessionService,
-              private userService: UserService) {
+              private userService: UserService,
+            private topicService:TopicService) {
   }
 
 
 
-
-
   ngOnInit(): void {
+    this.userId = this.sessionService.sessionInformation?.id;
+    console.log("userId :"+this.userId)
+
+    
     // Initialisation du formulaire avec des valeurs par défaut ou les valeurs de l'utilisateur connecté
     this.form = this.fb.group({
       username: ['', Validators.required], 
       email: ['', [Validators.required, Validators.email]]
     });
 
-    // // Récupération des informations de l'utilisateur connecté
-    // this.userService
-    //   .getById(this.sessionService.sessionInformation!.id.toString())
-    //   .subscribe((user: User) => {
-    //     this.user = user;
-    //     // Pré-remplissage du formulaire avec les informations de l'utilisateur
-    //     this.form.patchValue({
-    //       username: user.username,
-    //       email: user.email
-    //     });
-    //   });
-    // }
-  }
+    /** 
+    if(this.userId){
+      this.loadTopics();
+      this.completeForm();
+      }
+*/
+    }
+/** 
+    loadTopics(): void {
+      this.topicService.getUserSubscriptions(this.userId!).subscribe((topics: Topic[]) => {
+        this.topics = topics;
+        console.log(this.topics);
+      });
+    }
+
+    completeForm(): void{
+        //Récupération des informations de l'utilisateur connecté
+        this.userService
+          .getById(this.userId!)
+          .subscribe((user: User) => {
+            this.user = user;
+            // Pré-remplissage du formulaire avec les informations de l'utilisateur
+            this.form.patchValue({
+              username: user.username,
+              email: user.email
+            });
+          });
+        }
+*/
+    
+
   save(): void {
     // Vous pouvez implémenter ici la logique pour sauvegarder les données de l'utilisateur
-    console.log('Données sauvegardées :', this.form.value);
+    //console.log('Données sauvegardées :', this.form.value);
   }
 }
