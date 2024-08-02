@@ -20,6 +20,8 @@ import { CardPostComponent } from './components/card-post/card-post.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { AuthModule } from './modules/auth.module';
 import { SharedModule } from './modules/shared-module.module';
+import { AuthGuard } from './guards/auth.guard';
+import { UnauthGuard } from './guards/unauth.guard';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NavbarComponent, MeComponent, NotFoundComponent, DetailPostComponent, CreatePostComponent, FeedPostComponent, AllTopicsComponent, CardTopicComponent, CardPostComponent],
@@ -30,7 +32,7 @@ import { SharedModule } from './modules/shared-module.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [ {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent],
