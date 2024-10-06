@@ -1,39 +1,40 @@
-<div class="flex flex-col items-center h-screen">
-    <h2 class="text-2xl font-bold mb-4">Profil Utilisateur</h2>
-    <form class="w-full max-w-sm mx-auto" [formGroup]="form">
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Nom d'utilisateur</label>
-        <input class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Nom d'utilisateur" formControlName="username">
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
-        <input class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" formControlName="email">
-      </div>
-      <div class="mb-4 text-center">
-        <button class="bg-violet hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" type="button" (click)="save()">Sauvegarder</button>
-      </div>
-     </form>
-     
-     <div *ngIf="errorMessage" class="text-red-500 mb-4">
-      {{ errorMessage }}
+<div class="">
+  <h2 class="text-2xl font-bold mb-4 text-center">Profil Utilisateur</h2>
+  <form class="w-full max-w-sm mx-auto" [formGroup]="form">
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Nom d'utilisateur</label>
+      <input class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-violet" id="username" type="text" placeholder="Nom d'utilisateur" formControlName="username">
     </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+      <input class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-violet" id="email" type="email" placeholder="Email" formControlName="email">
+    </div>
+    <div class="text-center">
+      <button class="bg-violet hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" type="button" (click)="save()">Sauvegarder</button>
+    </div>
+  </form>
+     
+  <div *ngIf="errorMessage" class="text-red-500 mb-4">
+    {{ errorMessage }}
+  </div>
 
-  <div class="mt-4 text-center">
+  <div class="text-center">
     <a (click)="logout()" class="text-red-500">Se déconnecter</a>
   </div>
 
-    <hr class="border-black my-6 w-full max-w-sm">
-    <h2 class="text-lg font-bold mb-4">Abonnements</h2>
+  <hr class="border-black my-6 w-full max-w-sm mx-auto">
+  <h2 class="text-lg font-bold mb-4 text-center">Abonnements</h2>
   
-    <div class="flex flex-wrap justify-center">
-        <ng-container *ngFor="let topic of topics">
-          <div class="w-full md:w-1/2 lg:w-1/2 p-2">
-            <app-card-topic [title]="topic.name" [content]="topic.description" [isSubscribed]=isUserSubscribed(topic) (subscriptionToggle)="toggleSubscription(topic)">
-              ></app-card-topic>
-          </div>
-        </ng-container>
+  <div class="flex flex-wrap justify-center">
+    <ng-container *ngFor="let topic of topics">
+      <div class="w-full sm:w-1/2 lg:w-1/2 p-2"> 
+        <app-card-topic 
+          [title]="topic.name" 
+          [content]="topic.description" 
+          [isSubscribed]="isUserSubscribed(topic)" 
+          (subscriptionToggle)="toggleSubscription(topic)">
+        </app-card-topic>
       </div>
-    
-    
-
+    </ng-container>
   </div>
+</div>

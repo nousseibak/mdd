@@ -30,8 +30,10 @@ export class CreatePostComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.sessionService.sessionInformation?.id; // Obtenir l'ID de l'utilisateur connecté
+    
     this.loadUser();
     this.loadTopics();
+
   }
 
   loadUser(): void {
@@ -56,12 +58,8 @@ export class CreatePostComponent implements OnInit {
 
   onSubmit(): void {
 
+
     if (this.userId && this.article.title && this.article.content && this.article.topic) {
-      
-      //this.article.topicId=this.article.topic.id;
-      console.log("author: " + this.article.author?.email)
-      console.log("post: " + this.article.content)
-      console.log("title: " + this.article.title)
 
       this.postService.createPost(this.article as Post).subscribe(() => {
         this.router.navigate(['/feedPost']); // Redirige vers la page principale après création

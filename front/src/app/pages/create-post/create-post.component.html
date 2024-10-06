@@ -2,23 +2,24 @@
   <div class="flex items-center mb-4">
     <app-back-button></app-back-button>
     <div class="w-6"></div> <!-- Boîte invisible pour créer un espace -->
-    <h1 class="text-2xl font-bold mb-4">Créer un nouvel article</h1>
+    <h1 class="text-2xlfont-bold mb-4 md:flex-grow">Créer un nouvel article</h1>
   </div>
-  
-    <form (ngSubmit)="onSubmit()" #articleForm="ngForm">
-      <div class="mb-4">   
-        <select id="topic" [(ngModel)]="topic" name="topic" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300">
-          <option hidden value="" disabled selected  >Sélectionner un thème</option>
-          <option *ngFor="let topic of topics" [ngValue]="topic">{{ topic.name }}</option>
-        </select>
-      </div>
-      <div class="mb-4">
-        <input id="title" type="text" [(ngModel)]="article.title" name="title" placeholder="Titre de l'article" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300">
-      </div>
-      <div class="mb-4">
-        <textarea id="content" [(ngModel)]="article.content" name="content" rows="5" placeholder="Contenu de l'article" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"></textarea>
-      </div>
-      <button type="submit" class="bg-violet hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md">Créer</button>
-    </form>
-  </div>
-  
+
+
+
+  <form (ngSubmit)="onSubmit()" #articleForm="ngForm">
+    <div class="mb-4">   
+      <select id="topic" [(ngModel)]="article.topic" name="topic" required class="mt-1 block w-full px-3 py-2 border border-violet rounded-md shadow-sm focus:outline-none focus:ring ">
+        <option value="" disabled selected>Sélectionner un thème</option>
+        <option *ngFor="let topic of topics" [ngValue]="topic">{{ topic.name }}</option>
+      </select>
+    </div>
+    <div class="mb-4">
+      <input id="title" type="text" [(ngModel)]="article.title" name="title" placeholder="Titre de l'article" required class="mt-1 block w-full px-3 py-2 border border-violet rounded-md shadow-sm focus:outline-none focus:ring ">
+    </div>
+    <div class="mb-4">
+      <textarea id="content" [(ngModel)]="article.content" name="content" rows="5" placeholder="Contenu de l'article" required class="mt-1 block w-full px-3 py-2 border border-violet rounded-md shadow-sm focus:outline-none focus:ring "></textarea>
+    </div>
+    <button type="submit" class="bg-violet hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md">Créer</button>
+  </form>
+</div>
