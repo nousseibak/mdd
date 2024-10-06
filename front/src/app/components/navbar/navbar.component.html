@@ -17,8 +17,8 @@
   <div class="navbar-items hidden md:flex items-center">
     <div *ngIf="$isLogged() | async">
       <ul class="flex justify-end items-center">
-        <li class="mr-4"><a routerLink="/feedPost">Articles</a></li>
-        <li class="mr-4"><a routerLink="/allTopics">Thèmes</a></li>
+        <li class="mr-4"><a routerLink="/feedPost" routerLinkActive="text-violet">Articles</a></li>
+        <li class="mr-4"><a routerLink="/allTopics" routerLinkActive="text-violet">Thèmes</a></li>
         <li class="relative">
           <a routerLink="/me">
             <div class="rounded-full h-10 w-10 flex items-center justify-center">
@@ -34,8 +34,8 @@
   <div *ngIf="isMenuOpen" class="absolute top-12 right-0 bg-white shadow-md p-4 rounded-md md:hidden flex flex-col h-screen">
 
     <ul class="flex-1">
-      <li class="mb-4"><a routerLink="/feedPost">Articles</a></li>
-      <li class="mb-4"><a routerLink="/allTopics">Thèmes</a></li>
+      <li class="mb-4"><a routerLink="/feedPost" routerLinkActive="text-violet">Articles</a></li>
+      <li class="mb-4"><a routerLink="/allTopics" routerLinkActive="text-violet">Thèmes</a></li>
       <li><a routerLink="/me" class="block mt-auto">
         <img src="assets/profile.png" alt="User Logo" class="rounded-full mx-auto">
       </a></li>

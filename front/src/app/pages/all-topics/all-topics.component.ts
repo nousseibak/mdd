@@ -57,6 +57,8 @@ export class AllTopicsComponent implements OnInit {
     }
     return false;
   }
+
+ 
 }
 
 

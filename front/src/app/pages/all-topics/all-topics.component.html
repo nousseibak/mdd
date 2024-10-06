@@ -5,7 +5,8 @@
         [title]="topic.name"
         [content]="topic.description"
         [isSubscribed]="isUserSubscribed(topic)"
-        (subscriptionToggle)="toggleSubscription(topic)">
+        (subscriptionToggle)="toggleSubscription(topic)"
+        [disableUnsubscribe]="true">
       </app-card-topic>
     </div>
   </ng-container>

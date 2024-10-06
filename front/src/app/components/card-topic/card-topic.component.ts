@@ -11,6 +11,8 @@ export class CardTopicComponent {
   @Input() content!: string;
   @Output() subscriptionToggle = new EventEmitter<void>();
   @Input() isSubscribed: boolean | undefined;
+  @Input() disableUnsubscribe: boolean = false; // propriété pour contrôler l'état du bouton
+
 
 
 

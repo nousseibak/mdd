@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { MeComponent } from './pages/me/me.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { DetailPostComponent } from './pages/detail-post/detail-post.component';
@@ -17,14 +16,11 @@ import { AllTopicsComponent } from './pages/all-topics/all-topics.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardTopicComponent } from './components/card-topic/card-topic.component';
 import { CardPostComponent } from './components/card-post/card-post.component';
-import { BackButtonComponent } from './components/back-button/back-button.component';
-import { AuthModule } from './modules/auth.module';
 import { SharedModule } from './modules/shared-module.module';
-import { AuthGuard } from './guards/auth.guard';
-import { UnauthGuard } from './guards/unauth.guard';
+
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavbarComponent, MeComponent, NotFoundComponent, DetailPostComponent, CreatePostComponent, FeedPostComponent, AllTopicsComponent, CardTopicComponent, CardPostComponent],
+  declarations: [AppComponent, HomeComponent, MeComponent, NotFoundComponent, DetailPostComponent, CreatePostComponent, FeedPostComponent, AllTopicsComponent, CardTopicComponent, CardPostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
