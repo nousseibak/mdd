@@ -6,7 +6,7 @@ Le MVP permettra aux utilisateurs de s'inscrire, se connecter/se déconnecter, a
 ## Technologies 
 
 Back-end:
-- java 17
+- Java 17
 - Spring Boot 3.3.0
 - Mapstruct
 - Lombok
@@ -16,13 +16,21 @@ Front-end:
 - Angular 14.1.3
 - Tailwind
 
+Base de données:
+- MySql
 
 ## Front
 
 Installer node_modules avant de commencer (`npm install`).
+
 Lancer la commande `ng serve` pour démarrer le projet. Aller à l'adresse `http://localhost:4200/` pour voir l'application.
 
+## Base de données
+
+Le script pour créer la base de données MySql et ses tables se trouve dans le dossier ressources.
 
 ## Back
+
+Modifier le fichier application.properties avec les informations de la bdd.
 
 Faire un clean/install puis lancer le projet
