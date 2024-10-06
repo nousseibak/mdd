@@ -1,25 +1,28 @@
-# P6-Full-Stack-reseau-dev
+# Projet MDD
+
+MDD (Monde de Dév) est un réseau social pour développeurs. Le but est de développer le MVP (Minimum Viable Product).
+Le MVP permettra aux utilisateurs de s'inscrire, se connecter/se déconnecter, afficher/modifier son profil, s’abonner/se désabonner de sujets liés à la programmation (comme JavaScript, Java, Python, Web3, etc.). Le fil d’actualité affichera chronologiquement les articles correspondants aux abonnements. L’utilisateur pourra également écrire des articles et poster des commentaires.
+
+## Technologies 
+
+Back-end:
+- java 17
+- Spring Boot 3.3.0
+- Mapstruct
+- Lombok
+- Spring Security et JWT(json web token)
+
+Front-end:
+- Angular 14.1.3
+- Tailwind
+
 
 ## Front
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+Installer node_modules avant de commencer (`npm install`).
+Lancer la commande `ng serve` pour démarrer le projet. Aller à l'adresse `http://localhost:4200/` pour voir l'application.
 
-Don't forget to install your node_modules before starting (`npm install`).
 
-### Development server
+## Back
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-### Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-### Where to start
-
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
-
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
-
-Note: I recommend to use material however it's not mandatory, if you prefer you can get ride of it.
-
-Good luck!
+Faire un clean/install puis lancer le projet
