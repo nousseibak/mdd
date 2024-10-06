@@ -8,15 +8,14 @@ import { Router } from '@angular/router';
   templateUrl: './card-post.component.html',
   styleUrls: ['./card-post.component.scss']
 })
-export class CardPostComponent  {
-  
-    @Input() post!: Post;
-  
-    constructor(private router: Router) { }
+export class CardPostComponent {
 
-    navigateToDetail() {
-      this.router.navigate(['/detailPost', this.post.id]);
-    }
-  
+  @Input() post!: Post;
+
+  constructor(private router: Router) { }
+
+  navigateToDetail() {
+    this.router.navigate(['/detailPost', this.post.id]);
   }
-  
+
+}

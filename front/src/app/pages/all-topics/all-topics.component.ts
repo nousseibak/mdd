@@ -17,7 +17,7 @@ export class AllTopicsComponent implements OnInit {
     private topicService: TopicService,
     private userService: UserService,
     private sessionService: SessionService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userId = this.sessionService.sessionInformation?.id;
@@ -28,23 +28,18 @@ export class AllTopicsComponent implements OnInit {
   loadTopics(): void {
     this.topicService.getAllTopics().subscribe((topics: Topic[]) => {
       this.topics = topics;
-      console.log(this.topics);
     });
   }
 
   toggleSubscription(topic: Topic): void {
-    console.log('id:', this.userId);
-    console.log('topic.subscribers:', topic.subscribers);
 
     if (this.userId) {
       if (topic.subscribers && !topic.subscribers.some(subscriber => subscriber.id === this.userId)) {
         this.topicService.subscribeToTopic(topic.id!, this.userId).subscribe(() => {
-          console.log('Subscribed to topic:', topic);
           this.loadTopics(); // Rafraîchir la liste après la souscription
         });
       } else if (topic.subscribers && topic.subscribers.some(subscriber => subscriber.id === this.userId)) {
         this.topicService.unsubscribeFromTopic(topic.id!, this.userId).subscribe(() => {
-          console.log('Unsubscribed from topic:', topic);
           this.loadTopics(); // Rafraîchir la liste après le désabonnement
         });
       }
@@ -58,7 +53,7 @@ export class AllTopicsComponent implements OnInit {
     return false;
   }
 
- 
+
 }
 
 

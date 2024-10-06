@@ -14,47 +14,7 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class DetailPostComponent implements OnInit {
 
-  // post: Post = {
-  //   id: 1,
-  //   title: "The Future of Quantum Computing",
-  //   content: "Quantum computing is set to revolutionize technology. It will change how we solve complex problems...",
-  //   author: {
-  //     id: 1,
-  //     username: "tech_guru",
-  //     email: "tech_guru@example.com",
-  //     createdAt: new Date('2024-01-15'),
-  //     updatedAt: new Date('2024-01-15')
-  //   },
-  //   topic: {
-  //     id: 1,
-  //     name: "Technology",
-  //     description: "Discussion about the latest technologies and innovations.",
-  //     createdAt: new Date('2024-01-01'),
-  //     updatedAt: new Date('2024-01-02'),
-  //     subscribers: [
-  //       {
-  //         id: 2,
-  //         username: "user1",
-  //         email: "user1@example.com",
-  //         createdAt: new Date('2024-01-01'),
-  //         updatedAt: new Date('2024-01-01')
-  //       }
-  //     ]
-  //   },
-  //   comments: [
-  //   ],
-  //   dateCreated: new Date('2024-01-15'),
-  //   createdAt: new Date('2024-01-15'),
-  //   updatedAt: new Date('2024-01-16')
-  // };
-
-
-  // constructor() { }
-
-  // ngOnInit(): void {
-  // }
-
-  post: Post| undefined;
+  post: Post | undefined;
   newCommentContent: string = '';
   userId: number | undefined;
 
@@ -66,7 +26,7 @@ export class DetailPostComponent implements OnInit {
     private commentService: CommentService,
     private sessionService: SessionService,
 
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userId = this.sessionService.sessionInformation?.id;
@@ -74,11 +34,6 @@ export class DetailPostComponent implements OnInit {
     const postId = +this.route.snapshot.paramMap.get('id')!;
     this.postService.getPostById(postId).subscribe((post: Post) => {
       this.post = post;
-      console.log("author: "+ this.post.author?.username)
-      console.log("theme: "+ this.post.topic?.name)
-      console.log("comments: "+ this.post.comments)
-      console.log("comments: "+ this.post.comments?.at(1)?.author)
-
     });
 
   }

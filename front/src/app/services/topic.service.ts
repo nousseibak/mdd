@@ -1,28 +1,24 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Topic } from '../interfaces/topic.interface';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TopicService {
-  //private apiUrl = `${environment.baseUrl}topics`;
 
   headers = new HttpHeaders({
-    //'Authorization': 'Bearer ' ,
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Credentials': 'true',
     'Content-Type': 'application/json',
-       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-       'Access-Control-Allow-Headers': 'X-Requested-With,content-type'
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+    'Access-Control-Allow-Headers': 'X-Requested-With,content-type'
   });
 
 
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllTopics(): Observable<Topic[]> {
     const params = new HttpParams();

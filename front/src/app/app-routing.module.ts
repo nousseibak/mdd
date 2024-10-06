@@ -1,23 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { UnauthGuard } from './guards/unauth.guard';
-import { MeComponent } from './pages/me/me.component';
-import { AllTopicsComponent } from './pages/all-topics/all-topics.component';
-import { FeedPostComponent } from './pages/feed-post/feed-post.component';
-import { DetailPostComponent } from './pages/detail-post/detail-post.component';
-import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { AuthGuard } from './guards/auth.guard';
+import { UnauthGuard } from './guards/unauth.guard';
+import { AllTopicsComponent } from './pages/all-topics/all-topics.component';
+import { CreatePostComponent } from './pages/create-post/create-post.component';
+import { DetailPostComponent } from './pages/detail-post/detail-post.component';
+import { FeedPostComponent } from './pages/feed-post/feed-post.component';
+import { HomeComponent } from './pages/home/home.component';
+import { MeComponent } from './pages/me/me.component';
 
-// consider a guard combined with canLoad / canActivate route option
-// to manage unauthenticated user to access private routes
-const routes: Routes = [{ path: '', component: HomeComponent},
-{ path: 'me', component: MeComponent, canActivate: [AuthGuard]},
-{ path: 'allTopics', component: AllTopicsComponent, canActivate: [AuthGuard]},
-{ path: 'feedPost', component: FeedPostComponent, canActivate: [AuthGuard]},
-{ path: 'detailPost/:id', component: DetailPostComponent, canActivate: [AuthGuard]},
-{ path: 'createPost', component: CreatePostComponent, canActivate: [AuthGuard]},
+const routes: Routes = [{ path: '', component: HomeComponent },
+{ path: 'me', component: MeComponent, canActivate: [AuthGuard] },
+{ path: 'allTopics', component: AllTopicsComponent, canActivate: [AuthGuard] },
+{ path: 'feedPost', component: FeedPostComponent, canActivate: [AuthGuard] },
+{ path: 'detailPost/:id', component: DetailPostComponent, canActivate: [AuthGuard] },
+{ path: 'createPost', component: CreatePostComponent, canActivate: [AuthGuard] },
 {
   path: '',
   canActivate: [UnauthGuard],
@@ -30,4 +27,4 @@ const routes: Routes = [{ path: '', component: HomeComponent},
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

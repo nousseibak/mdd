@@ -40,6 +40,6 @@ export class NavbarComponent implements OnInit {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
-  
+
 
 }

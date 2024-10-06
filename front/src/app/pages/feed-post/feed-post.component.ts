@@ -14,73 +14,8 @@ export class FeedPostComponent implements OnInit {
   userId: number | undefined; // ID de l'utilisateur connecté
 
   posts: Post[] = [];
-//   posts: Post[] = [
 
-//   {
-//     id: 1,
-//     title: 'First Post',
-//     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-//     author: 1,
-//     createdAt: new Date('2024-06-10'),
-//     updatedAt: new Date('2024-06-10'),
-//     topic: {
-//       id: 1,
-//       name: 'Science',
-//       description: 'Discussion about scientific discoveries and research.',
-//       createdAt: new Date('2024-06-10'),
-//       updatedAt: new Date('2024-06-12'),
-//     }
-//   },
-//   {
-//     id: 2,
-//     title: 'First Post',
-//     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-//     author:  1,
-//     createdAt: new Date('2024-06-10'),
-//     updatedAt: new Date('2024-06-10'),
-//     topic: {
-//       id: 1,
-//       name: 'Science',
-//       description: 'Discussion about scientific discoveries and research.',
-//       createdAt: new Date('2024-06-10'),
-//       updatedAt: new Date('2024-06-12'),
-//     }
-//   },
-//   {
-//     id: 3,
-//     title: 'First Post',
-//     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-//     author:  1,
-//     createdAt: new Date('2024-06-10'),
-//     updatedAt: new Date('2024-06-10'),
-//     topic: {
-//       id: 1,
-//       name: 'Science',
-//       description: 'Discussion about scientific discoveries and research.',
-//       createdAt: new Date('2024-06-10'),
-//       updatedAt: new Date('2024-06-12'),
-//     }
-//   },
-//   {
-//     id: 4,
-//     title: 'First Post',
-//     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-//     author: 1,
-    
-//     createdAt: new Date('2024-06-10'),
-//     updatedAt: new Date('2024-06-10'),
-//     topic: {
-//       id: 1,
-//       name: 'Science',
-//       description: 'Discussion about scientific discoveries and research.',
-//       createdAt: new Date('2024-06-10'),
-//       updatedAt: new Date('2024-06-12'),
-//     }
-//   },
-// ];
-
-
-  constructor(private postService: PostService,  private sessionService : SessionService, private router: Router) { }
+  constructor(private postService: PostService, private sessionService: SessionService, private router: Router) { }
 
   ngOnInit(): void {
     this.userId = this.sessionService.sessionInformation?.id; // Obtenir l'ID de l'utilisateur connecté
@@ -89,9 +24,16 @@ export class FeedPostComponent implements OnInit {
 
   loadPosts(): void {
     this.postService.getPostsByUserSubscriptions(this.userId!).subscribe(posts => {
-      this.posts = posts;
+      // Trier les posts par date de création, du plus récent au plus ancien
+      this.posts = posts.sort((a, b) => {
+        const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+        const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+        return dateB - dateA; // ordre décroissant
+      });
     });
   }
+
+
 
   createArticle() {
     // Rediriger vers une page de création d'article

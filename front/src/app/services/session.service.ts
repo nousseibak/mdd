@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SessionInformation } from '../interfaces/auth/sessionInformation.interface';
-import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'

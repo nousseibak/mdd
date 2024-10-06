@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { BackButtonComponent } from '../components/back-button/back-button.component';
 import { NavbarComponent } from '../components/navbar/navbar.component';
-import { RouterModule } from '@angular/router';
 
 
 
@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   declarations: [BackButtonComponent, NavbarComponent],
   imports: [
     CommonModule,
-    RouterModule 
+    RouterModule
   ],
   exports: [BackButtonComponent, NavbarComponent]
 

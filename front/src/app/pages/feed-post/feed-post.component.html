@@ -1,18 +1,29 @@
-<div class="flex justify-start mb-4 md:justify-start">
+<div class="flex flex-col md:flex-row justify-between items-center mb-4">
   <div class="w-6"></div>
 
-  <button 
-    class="bg-violet hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md 
-           mx-auto md:mx-0" 
-    (click)="createArticle()">
+  <button class="bg-violet hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md" (click)="createArticle()">
     Créer un article
   </button>
+
+  <!-- Ajouter le texte de tri avec une flèche descendante -->
+  <div class="flex items-center ml-4 md:ml-auto mt-4 md:mt-0">
+    <!-- Utiliser mt-4 pour le marging en haut sur petits écrans -->
+    <span class="text-gray-700 font-bold">Trier par</span>
+    <i class="fas fa-sort-down ml-1 text-gray-500"></i> <!-- Flèche descendante -->
+  </div>
 </div>
 
 <div class="flex flex-wrap justify-center">
-  <ng-container *ngFor="let post of posts">
-    <div class="w-full md:w-1/2 lg:w-1/2 p-2">
-      <app-card-post [post]="post"></app-card-post>
-    </div>
+  <!-- Vérifiez si posts est vide et affichez le message si c'est le cas -->
+  <ng-container *ngIf="posts.length === 0; else postsList">
+    <p class="text-gray-500 text-center">Aucun article à afficher</p>
   </ng-container>
+
+  <ng-template #postsList>
+    <ng-container *ngFor="let post of posts">
+      <div class="w-full md:w-1/2 lg:w-1/2 p-2">
+        <app-card-post [post]="post"></app-card-post>
+      </div>
+    </ng-container>
+  </ng-template>
 </div>

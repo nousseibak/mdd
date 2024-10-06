@@ -1,38 +1,44 @@
-<!--<app-navbar class="hidden md:block"></app-navbar>-->
+<app-navbar class="hidden md:block"></app-navbar>
 
 
 <div class="flex flex-col items-center h-screen mt-8 md:mt-0">
   <div class="w-full mb-4 flex flex-col md:flex-row  md:items-center">
-    
+
     <!-- Le bouton de retour sera centré sur petits écrans et aligné à gauche sur les grands écrans -->
     <div class="flex  md:justify-start items-center mb-4 md:mb-0">
       <div class="w-6"></div> <!-- Espace avant l'icône de retour -->
       <app-back-button></app-back-button>
       <div class="w-6"></div> <!-- Boîte invisible pour créer un espace -->
     </div>
-    
+
     <!-- Le logo sera visible uniquement sur les petits écrans, centré en bas du bouton de retour -->
-    <div class="navbar-logo flex justify-center md:hidden"> 
+    <div class="navbar-logo flex justify-center md:hidden">
       <a routerLink="/">
         <img src="/assets/logo_p6.png" alt="Logo" class="h-24">
       </a>
     </div>
 
     <h2 class="text-2xl mb-4  text-center md:flex-grow">Se connecter</h2>
-    
+
   </div>
 
   <form class="w-full max-w-sm mx-auto" [formGroup]="form" (ngSubmit)="submit()">
     <div class="mb-4">
       <label class="block text-gray-700 text-sm " for="username">Email ou nom d'utilisateur</label>
-      <input class="appearance-none border border-black rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="" formControlName="email">
+      <input
+        class="appearance-none border border-black rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="username" type="text" placeholder="" formControlName="email">
     </div>
     <div class="mb-6">
       <label class="block text-gray-700 text-sm " for="password">Mot de passe</label>
-      <input class="appearance-none border border-black rounded-md w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="" formControlName="password">
+      <input
+        class="appearance-none border border-black rounded-md w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+        id="password" type="password" placeholder="" formControlName="password">
     </div>
     <div class="flex justify-center">
-    <button class="bg-violet hover:bg-purple-700 text-white py-2 px-4 rounded-md focus:outline-none focus:shadow-outline font-bold" type="submit">Se connecter</button>
+      <button
+        class="bg-violet hover:bg-purple-700 text-white py-2 px-4 rounded-md focus:outline-none focus:shadow-outline font-bold"
+        type="submit">Se connecter</button>
     </div>
   </form>
 </div>

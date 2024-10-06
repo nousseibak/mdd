@@ -17,20 +17,20 @@ export class CreatePostComponent implements OnInit {
   userId: number | undefined; // ID de l'utilisateur connecté
   topics: Topic[] = [];
   article: Partial<Post> = {};
-  author!: User ; 
-  topic=""
+  author!: User;
+  topic = ""
 
   constructor(
     private topicService: TopicService,
     private postService: PostService,
     private router: Router,
-    private sessionService : SessionService,
-    private userService : UserService
-  ) {}
+    private sessionService: SessionService,
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
     this.userId = this.sessionService.sessionInformation?.id; // Obtenir l'ID de l'utilisateur connecté
-    
+
     this.loadUser();
     this.loadTopics();
 
@@ -40,7 +40,7 @@ export class CreatePostComponent implements OnInit {
     if (this.userId) {
       this.userService.getById(this.userId).subscribe({
         next: (user: User) => {
-          this.article.author = user; 
+          this.article.author = user;
         },
         error: (error) => {
           console.error('Échec du chargement de l\'utilisateur :', error);
@@ -57,7 +57,6 @@ export class CreatePostComponent implements OnInit {
   }
 
   onSubmit(): void {
-
 
     if (this.userId && this.article.title && this.article.content && this.article.topic) {
 

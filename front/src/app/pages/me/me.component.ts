@@ -33,9 +33,6 @@ export class MeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.sessionService.sessionInformation?.id;
-    console.log("userId :" + this.userId)
-
-
     // Initialisation du formulaire avec des valeurs par défaut ou les valeurs de l'utilisateur connecté
     this.form = this.fb.group({
       username: ['', Validators.required],
@@ -53,7 +50,6 @@ export class MeComponent implements OnInit {
   loadTopics(): void {
     this.topicService.getUserSubscriptions(this.userId!).subscribe((topics: Topic[]) => {
       this.topics = topics;
-      console.log(this.topics);
     });
   }
 
@@ -82,7 +78,6 @@ export class MeComponent implements OnInit {
 
       this.userService.updateUser(this.userId!, updatedUserData).subscribe(
         (updatedUser: User) => {
-          console.log('Données utilisateur mises à jour :', updatedUser);
           this.user = updatedUser;
           this.logout();
         },
@@ -101,18 +96,13 @@ export class MeComponent implements OnInit {
 
 
   toggleSubscription(topic: Topic): void {
-    console.log('id:', this.userId);
-    console.log('topic.subscribers:', topic.subscribers);
-
     if (this.userId) {
       if (topic.subscribers && !topic.subscribers.some(subscriber => subscriber.id === this.userId)) {
         this.topicService.subscribeToTopic(topic.id!, this.userId).subscribe(() => {
-          console.log('Subscribed to topic:', topic);
           this.loadTopics(); // Rafraîchir la liste après la souscription
         });
       } else if (topic.subscribers && topic.subscribers.some(subscriber => subscriber.id === this.userId)) {
         this.topicService.unsubscribeFromTopic(topic.id!, this.userId).subscribe(() => {
-          console.log('Unsubscribed from topic:', topic);
           this.loadTopics(); // Rafraîchir la liste après le désabonnement
         });
       }

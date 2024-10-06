@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SessionService } from 'src/app/services/session.service';
 
@@ -17,7 +17,7 @@ export class AppComponent {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // Vérifiez si l'URL correspond aux pages de connexion ou d'enregistrement
-        const isLoginOrRegisterPage = event.url === '/login' || event.url === '/register'|| event.url === '/';
+        const isLoginOrRegisterPage = event.url === '/login' || event.url === '/register' || event.url === '/';
         this.showNavbar = !isLoginOrRegisterPage; // Masquez la navbar sur ces pages
       }
     });

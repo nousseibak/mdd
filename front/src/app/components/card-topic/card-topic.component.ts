@@ -17,7 +17,6 @@ export class CardTopicComponent {
 
 
   toggleSubscription(): void {
-    console.log('Button clicked'); 
     this.subscriptionToggle.emit();
   }
 

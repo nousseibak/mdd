@@ -1,4 +1,3 @@
-
 <div class="post-detail bg-white rounded-lg p-6 shadow-md">
   <div class="flex items-center mb-4">
     <app-back-button></app-back-button>
@@ -12,17 +11,15 @@
       <span>{{ post?.topic?.name }}</span>
     </div>
   </div>
-    <p class="text-black mb-6">{{ post?.content }}</p>
-    <hr class="border-t-2 border-black mb-4">
-    <h2 class="text-xl font-semibold mb-4">Commentaires</h2>
+  <p class="text-black mb-6">{{ post?.content }}</p>
+  <hr class="border-t-2 border-black mb-4">
+  <h2 class="text-xl font-semibold mb-4">Commentaires</h2>
 
   <!-- Affichage des commentaires -->
   <div *ngIf="post && post.comments && post.comments.length > 0">
     <div *ngFor="let comment of post?.comments" class="mb-4 flex justify-center">
       <div class="w-full max-w-lg flex items-start mb-2">
-        <!-- Nom d'utilisateur -->
         <span class="">{{ comment.author?.username }}</span>
-        <!-- Conteneur du commentaire avec encadrement -->
         <div class="ml-4 bg-gray-100 rounded-lg p-4 w-full">
           {{ comment.content }}
         </div>
@@ -30,17 +27,16 @@
     </div>
   </div>
 
-  
-    
+
+
   <!-- Formulaire d'ajout de commentaire -->
   <form (ngSubmit)="addComment()" class="mt-4">
     <div class="flex items-center">
-      <input type="text" placeholder="Ajouter un commentaire" class="border-2 border-black rounded p-2 flex-1"
-        [(ngModel)]="newCommentContent" name="newCommentContent" required>
+      <textarea type="text" placeholder="Ecrivez ici votre commentaire" class="border-2 border-grey rounded p-2 flex-1"
+        [(ngModel)]="newCommentContent" name="newCommentContent" required>    </textarea>
+
       <button type="submit" class="ml-2 bg-violet text-white p-2 rounded">
-        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
+        <i class="fas fa-paper-plane"></i>
       </button>
     </div>
   </form>
