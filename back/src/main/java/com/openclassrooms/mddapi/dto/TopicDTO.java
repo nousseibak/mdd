@@ -1,7 +1,5 @@
 package com.openclassrooms.mddapi.dto;
 
-import com.openclassrooms.mddapi.dto.PostDTO;
-import com.openclassrooms.mddapi.dto.UserDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -28,9 +26,6 @@ public class TopicDTO {
     private String description;
 
     private List<UserDTO> subscribers = new ArrayList<>();
-
-    //private List<PostDTO> posts;
-
 
     private LocalDateTime createdAt;
 

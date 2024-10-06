@@ -1,27 +1,45 @@
-<nav  *ngIf="showNavbar" class="navbar md:flex items-center justify-between border-b border-black">
-    <div class="navbar-logo">
+<nav *ngIf="showNavbar" class="navbar flex flex-col md:flex-row items-center justify-between border-b border-black">
+  <!-- Logo et bouton menu burger pour les petits écrans -->
+  <div class="flex items-center justify-between w-full md:w-auto">
+    <div class="navbar-logo flex items-center">
       <a routerLink="/">
-      <img src="/assets/logo_p6.png" alt="Logo" class="h-24">
+        <img src="/assets/logo_p6.png" alt="Logo" class="h-16 md:h-24"> <!-- Logo plus petit sur petits écrans -->
       </a>
     </div>
-    <div class="navbar-items">
-      <div *ngIf="$isLogged() | async">
-      <ul class="flex justify-end items-center">
 
+    <!-- Menu burger pour les petits écrans -->
+    <button class="p-2 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 md:hidden" (click)="toggleMenu()">
+      <i class="fas fa-bars text-2xl"></i>
+    </button>
+  </div>
+
+  <!-- Éléments de navigation pour les grands écrans -->
+  <div class="navbar-items hidden md:flex items-center">
+    <div *ngIf="$isLogged() | async">
+      <ul class="flex justify-end items-center">
         <li class="mr-4"><a routerLink="/feedPost">Articles</a></li>
         <li class="mr-4"><a routerLink="/allTopics">Thèmes</a></li>
-
         <li class="relative">
           <a routerLink="/me">
-            <div class="rounded-full bg-gray-400 h-10 w-10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current text-white" viewBox="0 0 20 20">
-                <path d="M12 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm3 0a7 7 0 0 0-6 6.32 7.2 7.2 0 0 0 2-.32 5 5 0 0 1 2-3 5 5 0 0 1 2 3 7.2 7.2 0 0 0 2 .32 7 7 0 0 0-6-6zm-6-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
-              </svg>
+            <div class="rounded-full h-10 w-10 flex items-center justify-center">
+              <img src="assets/profile.png" alt="User Logo" class="">
             </div>
           </a>
         </li>
       </ul>
     </div>
   </div>
-  </nav>
-  <div class="mb-4"></div>
+
+  <!-- Contenu du menu pour les petits écrans -->
+  <div *ngIf="isMenuOpen" class="absolute top-12 right-0 bg-white shadow-md p-4 rounded-md md:hidden flex flex-col h-screen">
+
+    <ul class="flex-1">
+      <li class="mb-4"><a routerLink="/feedPost">Articles</a></li>
+      <li class="mb-4"><a routerLink="/allTopics">Thèmes</a></li>
+      <li><a routerLink="/me" class="block mt-auto">
+        <img src="assets/profile.png" alt="User Logo" class="rounded-full mx-auto">
+      </a></li>
+    </ul>
+  </div>
+</nav>
+<div class="mb-4"></div>

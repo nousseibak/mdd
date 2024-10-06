@@ -4,8 +4,13 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {      
+      colors: {
+        violet: '#7763C5',
+        cardBackground:'#F5F5F5'
+      }
+    },
   },
   plugins: [],
-}
 
+}

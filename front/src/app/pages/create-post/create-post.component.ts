@@ -18,6 +18,7 @@ export class CreatePostComponent implements OnInit {
   topics: Topic[] = [];
   article: Partial<Post> = {};
   author!: User ; 
+  topic=""
 
   constructor(
     private topicService: TopicService,

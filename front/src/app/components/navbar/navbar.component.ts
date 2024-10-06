@@ -11,6 +11,10 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class NavbarComponent implements OnInit {
   showNavbar = true;
+  isLoginPage = false;
+  isRegisterPage = false;
+  isMenuOpen = false;
+
 
   constructor(private router: Router,
     private sessionService: SessionService
@@ -19,7 +23,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        // Vérifiez si la route active est la page d'accueil
+        this.isLoginPage = event.url === '/login';
+        this.isRegisterPage = event.url === '/register';
+        // Vérifier si la route active est la page d'accueil
         this.showNavbar = event.url !== '/';
       }
     });
@@ -29,6 +35,11 @@ export class NavbarComponent implements OnInit {
     return this.sessionService.$isLogged();
   }
 
+
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
   
 
 }

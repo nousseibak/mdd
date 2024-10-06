@@ -40,11 +40,6 @@ public class UserDTO {
 
     private boolean admin;
 
-    //private List<Post> posts;
-
-    //private List<CommentDTO> comments;
-    //private List<TopicDTO> subscriptions;
-
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
